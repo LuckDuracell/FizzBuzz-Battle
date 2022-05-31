@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AAF170128459E4E00DC65AB /* OnboardingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF170028459E4E00DC65AB /* OnboardingSheetView.swift */; };
+		0AAF17032845A58100DC65AB /* OnboardingPage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF17022845A58100DC65AB /* OnboardingPage1.swift */; };
+		0AAF17052845A5B200DC65AB /* OnboardingPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF17042845A5B200DC65AB /* OnboardingPage2.swift */; };
+		0AAF17072845A90700DC65AB /* OnboardingPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAF17062845A90700DC65AB /* OnboardingPage3.swift */; };
 		0AC0E84D2843A80B00FF4927 /* FizzBuzzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC0E84C2843A80B00FF4927 /* FizzBuzzApp.swift */; };
 		0AC0E84F2843A80B00FF4927 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC0E84E2843A80B00FF4927 /* ContentView.swift */; };
 		0AC0E8512843A80C00FF4927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC0E8502843A80C00FF4927 /* Assets.xcassets */; };
@@ -34,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AAF170028459E4E00DC65AB /* OnboardingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSheetView.swift; sourceTree = "<group>"; };
+		0AAF17022845A58100DC65AB /* OnboardingPage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage1.swift; sourceTree = "<group>"; };
+		0AAF17042845A5B200DC65AB /* OnboardingPage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage2.swift; sourceTree = "<group>"; };
+		0AAF17062845A90700DC65AB /* OnboardingPage3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage3.swift; sourceTree = "<group>"; };
 		0AC0E8492843A80B00FF4927 /* FizzBuzz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FizzBuzz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC0E84C2843A80B00FF4927 /* FizzBuzzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FizzBuzzApp.swift; sourceTree = "<group>"; };
 		0AC0E84E2843A80B00FF4927 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +104,10 @@
 			children = (
 				0AC0E84C2843A80B00FF4927 /* FizzBuzzApp.swift */,
 				0AC0E84E2843A80B00FF4927 /* ContentView.swift */,
+				0AAF170028459E4E00DC65AB /* OnboardingSheetView.swift */,
+				0AAF17022845A58100DC65AB /* OnboardingPage1.swift */,
+				0AAF17042845A5B200DC65AB /* OnboardingPage2.swift */,
+				0AAF17062845A90700DC65AB /* OnboardingPage3.swift */,
 				0AC0E8502843A80C00FF4927 /* Assets.xcassets */,
 				0AC0E8522843A80C00FF4927 /* Preview Content */,
 			);
@@ -258,7 +270,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AC0E84F2843A80B00FF4927 /* ContentView.swift in Sources */,
+				0AAF17072845A90700DC65AB /* OnboardingPage3.swift in Sources */,
+				0AAF17032845A58100DC65AB /* OnboardingPage1.swift in Sources */,
 				0AC0E84D2843A80B00FF4927 /* FizzBuzzApp.swift in Sources */,
+				0AAF170128459E4E00DC65AB /* OnboardingSheetView.swift in Sources */,
+				0AAF17052845A5B200DC65AB /* OnboardingPage2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +431,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_ASSET_PATHS = "\"FizzBuzz/Preview Content\"";
 				DEVELOPMENT_TEAM = RV78ENMXZ2;
 				ENABLE_PREVIEWS = YES;
@@ -423,9 +439,11 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,7 +463,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_ASSET_PATHS = "\"FizzBuzz/Preview Content\"";
 				DEVELOPMENT_TEAM = RV78ENMXZ2;
 				ENABLE_PREVIEWS = YES;
@@ -453,9 +471,11 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

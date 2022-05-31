@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var onboarding = false
+    
     @State var digit = 1
     @State var playing = false
     @State var difficulty: String = "Solo"
@@ -20,6 +22,7 @@ struct ContentView: View {
     // gameState 0 is nothing, 1 is correct answer, 2 is wrong answer
     var device = deviceScreen()
     
+    @State var won = false
     
     @State private var countdown = 5
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -45,7 +48,8 @@ struct ContentView: View {
             botGuessing = true
             winLoss = "Win"
             let guess = Int.random(in: 0...5)
-            let durationNum = Int.random(in: 1...6)
+            var durationNum = Int.random(in: 1...6)
+            if durationNum == 5 { durationNum = 6 }
             let duration = DispatchTimeInterval.seconds(durationNum)
             if durationNum < 6 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {
@@ -58,15 +62,17 @@ struct ContentView: View {
                     } else {
                         botGuessing = false
                         winLoss = "Win"
-                        gameState = 2
+                        gameState = 0
                         countdown = 5
+                        won = true
                     }
                 })
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {
                         botGuessing = false
                         winLoss = "Win"
-                        gameState = 2
+                        gameState = 0
+                        won = true
                 })
             }
         case "Medium":
@@ -76,7 +82,7 @@ struct ContentView: View {
             botGuessing = true
             winLoss = "Win"
             let guess = Int.random(in: 0...10)
-            let durationNum = Int.random(in: 1...5)
+            let durationNum = Int.random(in: 1...4)
             let duration = DispatchTimeInterval.seconds(durationNum)
             DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {
                 if guess != 4 {
@@ -88,7 +94,8 @@ struct ContentView: View {
                 } else {
                     botGuessing = false
                     winLoss = "Win"
-                    gameState = 2
+                    gameState = 0
+                    won = true
                 }
             })
         default:
@@ -98,7 +105,7 @@ struct ContentView: View {
             botGuessing = true
             winLoss = "Win"
             let guess = Int.random(in: 0...100)
-            let durationNum = Int.random(in: 1...5)
+            let durationNum = Int.random(in: 1...2)
             let duration = DispatchTimeInterval.seconds(durationNum)
             DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {
                 if guess != 4 {
@@ -110,7 +117,8 @@ struct ContentView: View {
                 } else {
                     botGuessing = false
                     winLoss = "Win"
-                    gameState = 2
+                    gameState = 0
+                    won = true
                 }
             })
         }
@@ -133,11 +141,6 @@ struct ContentView: View {
                     })
             } else if gameState == 2 {
                 Color.red.edgesIgnoringSafeArea(.all)
-                    .onAppear(perform: {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                            gameState = 0
-                        })
-                    })
             }
             VStack {
                 Picker("Difficulty", selection: $difficulty, content: {
@@ -163,16 +166,22 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(.white)
-                    Text("Score: \(digit)")
+                    Text("Score: \(digit - 1)")
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(.white)
+                        .onAppear(perform: {
+                            if winLoss == "Lose" {
+                                gameState = 2
+                            }
+                        })
                     Button {
                         countdown = 5
                         digit = 1
                         gameState = 0
                         updateDigits()
                         botGuessing = false
+                        won = false
                     } label: {
                         Text("Tap to Start Again")
                             .foregroundColor(.white)
@@ -295,7 +304,7 @@ struct ContentView: View {
                             })
                     }
                 } .overlay(content: {
-                    if botGuessing {
+                    if gameState == 2 || botGuessing || countdown == -1 {
                         Color.gray.edgesIgnoringSafeArea(.all).opacity(0.5).onTapGesture(perform: {
                             
                         })
@@ -303,6 +312,11 @@ struct ContentView: View {
                 })
             }
         }
+        .onAppear(perform: {
+            if isFirstTimeOpening() != false {
+                onboarding = true
+            }
+        })
         .onReceive(timer) { time in
             if gameState == 2 {
                  countdown = -1
@@ -310,9 +324,22 @@ struct ContentView: View {
             if countdown >= 0 {
                 countdown -= 1
             } else {
-                gameState = 2
+                if won == false {
+                    gameState = 2
+                }
             }
         }
+        .onChange(of: onboarding, perform: { i in
+            countdown = 5
+            digit = 1
+            gameState = 0
+            updateDigits()
+            botGuessing = false
+            won = false
+        })
+        .sheet(isPresented: $onboarding, content: {
+            OnboardingSheetView(onboarding: $onboarding)
+        })
     }
 }
 
@@ -361,4 +388,15 @@ func fbCheck(_ num: Int) -> String {
 class deviceScreen: ObservableObject {
     @Published var width = UIScreen.main.bounds.width
     @Published var height = UIScreen.main.bounds.height
+}
+
+func isFirstTimeOpening() -> Bool {
+  let defaults = UserDefaults.standard
+
+  if(defaults.integer(forKey: "hasRun") == 0) {
+      defaults.set(1, forKey: "hasRun")
+      return true
+  }
+  return false
+
 }
