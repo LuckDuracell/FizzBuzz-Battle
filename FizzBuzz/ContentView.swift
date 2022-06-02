@@ -224,6 +224,10 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(.white)
+//                    Text("\(botGuessing == true ? "Opponent is Guessing" : "")")
+//                        .font(.largeTitle)
+//                        .bold()
+//                        .foregroundColor(.white)
                 } else {
                     Text("You \(winLoss)!")
                         .font(.largeTitle)
