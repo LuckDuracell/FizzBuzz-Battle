@@ -42,7 +42,7 @@ struct OnboardingPage3: View {
             } label: {
                 Text("And Begin!")
                     .foregroundColor(.white)
-                    .frame(width: device.width * 0.8, height: 80, alignment: .center)
+                    .frame(width: 250, height: 80, alignment: .center)
                     .background(.indigo)
                     .cornerRadius(15)
                     .overlay(content: {

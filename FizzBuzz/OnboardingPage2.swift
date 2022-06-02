@@ -34,23 +34,26 @@ struct OnboardingPage2: View {
                     .scaledToFit()
                     .frame(width: 40, height: 40, alignment: .center)
                 Text("Every time the number is divisible by 3 (3, 6, 9, 12, etc.), you say Fizz instead")
-            } .frame(width: device.width * 0.9, alignment: .leading)
+                Spacer()
+            }
                 .multilineTextAlignment(.leading)
             HStack {
                 Image(systemName: "2.circle.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 40, height: 40, alignment: .center)
-            Text("And every time the number is divisible by 5 (5, 10, 15, etc.), you say Buzz")
-            } .frame(width: device.width * 0.9, alignment: .leading)
+                Text("And every time the number is divisible by 5 (5, 10, 15, etc.), you say Buzz")
+                Spacer()
+            }
                 .multilineTextAlignment(.leading)
             HStack {
                 Image(systemName: "3.circle.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 40, height: 40, alignment: .center)
-            Text("And finally, when it's divisible by 3 AND 5 (15, 30, etc.), you say FizzBuzz")
-            } .frame(width: device.width * 0.9, alignment: .leading)
+                Text("And finally, when it's divisible by 3 AND 5 (15, 30, etc.), you say FizzBuzz")
+                Spacer()
+            }
                 .multilineTextAlignment(.leading)
                 .padding(.bottom, 50)
             Spacer()

@@ -12,9 +12,10 @@ struct ContentView: View {
     @State var onboarding = false
     
     @State var digit = 1
+    @State private var startingValue = 1
     @State var playing = false
     @State var difficulty: String = "Solo"
-    @State var options = ["Solo", "Easy", "Medium", "Impossible"]
+    @State var options = ["Solo", "Easy", "Medium", "Hard"]
     @State var gameState = 0
     @State var numbers: [Int] = [1, 2, 3]
     @State var winLoss = "Lose"
@@ -143,13 +144,75 @@ struct ContentView: View {
                 Color.red.edgesIgnoringSafeArea(.all)
             }
             VStack {
-                Picker("Difficulty", selection: $difficulty, content: {
+                HStack {
                     ForEach(options, id: \.self, content: { option in
-                        Text(option)
+                        Button {
+                            difficulty = option
+                        } label: {
+                            Text(option)
+                                .frame(width: device.width * 0.203, height: 35, alignment: .center)
+                                .background(difficulty == option ? .green : .indigo)
+                                .cornerRadius(10)
+                                .foregroundColor(.white)
+                                .overlay(content: {
+                                    RoundedRectangle(cornerRadius: 10)
+                                                    .stroke(Color.white, lineWidth: 3)
+                                })
+                        }
                     })
-                })
-                .pickerStyle(.segmented)
-                .padding()
+                } .padding(.top, 8)
+                HStack {
+                    Button {
+                        startingValue = 1
+                        digit = startingValue
+                    } label: {
+                        HStack {
+                            Text("Starts at 1")
+                                .foregroundColor(.white)
+                                .padding(.leading, 15)
+                            Spacer()
+                            Image(systemName: startingValue == 1 ? "checkmark" : "")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18, height: 18, alignment: .center)
+                                .foregroundColor(.white)
+                            Spacer()
+                        }
+                        .frame(width: device.width * 0.43, height: 35, alignment: .center)
+                        .background(.indigo)
+                        .cornerRadius(10)
+                        .overlay(content: {
+                            RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.white, lineWidth: 3)
+                        })
+                    }
+                    Button {
+                        startingValue = 2
+                        digit = startingValue
+                    } label: {
+                        HStack {
+                            Text("Starts at 2")
+                                .foregroundColor(.white)
+                                .padding(.leading, 15)
+                            Spacer()
+                            Image(systemName: startingValue == 2 ? "checkmark" : "")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 18, height: 18, alignment: .center)
+                                .foregroundColor(.white)
+                            Spacer()
+                        }
+                        .frame(width: UIScreen.main.bounds.width * 0.43, height: 35, alignment: .center)
+                        .background(.indigo)
+                        .cornerRadius(10)
+                        .overlay(content: {
+                            RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.white, lineWidth: 3)
+                        })
+                    }
+                }
+                .padding(.bottom)
+                .padding(.horizontal)
                 Divider()
                 Spacer()
                 if countdown != -1 {
